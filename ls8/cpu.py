@@ -13,7 +13,6 @@ class CPU:
         self.sp = 7  # stack pointer index in register
         self.reg[self.sp] = 244  # stack pointer
         self.flag = 0
-
         self.branchtable = {}
         self.branchtable[130] = self.LDI
         self.branchtable[71] = self.prnt
@@ -53,6 +52,7 @@ class CPU:
             self.reg[reg_a] *= self.reg[reg_b]
 
         # compare two numbers, use flag to indicate result
+    
         elif op == "CMP":
             if self.reg[reg_a] == self.reg[reg_b]:
                 self.flag = 1
@@ -184,7 +184,6 @@ class CPU:
         Handy function to print out the CPU state. You might want to call this
         from run() if you need help debugging.
         """
-
         print(f"TRACE: %02X | %02X %02X %02X |" % (
             self.pc,
             # self.fl,
@@ -201,7 +200,6 @@ class CPU:
 
     def run(self):
         running = True
-
         while running:
             IR = self.ram_read(self.pc)
             if IR == 1:
